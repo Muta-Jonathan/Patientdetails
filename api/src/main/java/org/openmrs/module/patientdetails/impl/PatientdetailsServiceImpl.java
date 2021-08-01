@@ -15,10 +15,12 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.patientdetails.Patientdetails;
-import org.openmrs.module.patientdetails.PatientdetailsService;
 import org.openmrs.module.patientdetails.dao.PatientdetailsDao;
+import org.openmrs.module.patientdetails.service.PatientdetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PatientdetailsServiceImpl extends BaseOpenmrsService implements PatientdetailsService {
 	
 	protected final Log log = LogFactory.getLog(this.getClass());
@@ -26,16 +28,8 @@ public class PatientdetailsServiceImpl extends BaseOpenmrsService implements Pat
 	@Autowired
 	PatientdetailsDao dao;
 	
-	@Override
-	public void onShutdown() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	public void onStartup() {
-		// TODO Auto-generated method stub
-		
+	public void setDao(PatientdetailsDao dao) {
+		this.dao = dao;
 	}
 	
 	@Override

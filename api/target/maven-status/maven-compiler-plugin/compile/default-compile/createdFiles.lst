@@ -5,4 +5,4 @@ org\openmrs\module\patientdetails\Item.class
 org\openmrs\module\patientdetails\Patientdetails.class
 org\openmrs\module\patientdetails\impl\PatientdetailsServiceImpl.class
 org\openmrs\module\patientdetails\PatientdetailsConfig.class
-org\openmrs\module\patientdetails\PatientdetailsService.class
+org\openmrs\module\patientdetails\service\PatientdetailsService.class

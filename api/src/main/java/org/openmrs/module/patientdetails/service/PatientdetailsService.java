@@ -7,11 +7,10 @@
  * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
  * graphic logo is a trademark of OpenMRS Inc.
  */
-package org.openmrs.module.patientdetails;
+package org.openmrs.module.patientdetails.service;
 
 import java.util.List;
 
-import org.openmrs.api.OpenmrsService;
 import org.openmrs.module.patientdetails.Patientdetails;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
  * The main service of this module, which is exposed for other modules. See
  * moduleApplicationContext.xml on how it is wired up.
  */
-public interface PatientdetailsService extends OpenmrsService {
+public interface PatientdetailsService {
 	
 	@Transactional(readOnly = true)
 	List<Patientdetails> getAllPatientdetails();

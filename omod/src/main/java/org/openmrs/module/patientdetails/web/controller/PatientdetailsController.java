@@ -10,7 +10,7 @@
 package org.openmrs.module.patientdetails.web.controller;
 
 import org.openmrs.module.patientdetails.Patientdetails;
-import org.openmrs.module.patientdetails.PatientdetailsService;
+import org.openmrs.module.patientdetails.service.PatientdetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;

@@ -33,7 +33,7 @@
             <ref bean="transactionManager" />
         </property>
         <property name="target">
-            <bean class="org.openmrs.module.patientdetails.api.impl.PatientdetailsServiceImpl">
+            <bean class="org.openmrs.module.patientdetails.impl.PatientdetailsServiceImpl">
                 <property name="dao" ref="patientdetails.PatientdetailsDao" />
             </bean>
         </property>
@@ -50,9 +50,45 @@
     <bean parent="serviceContext">
         <property name="moduleService">
             <list>
-                <value>org.openmrs.module.patientdetails.api.PatientdetailsService</value>
+                <value>org.openmrs.module.patientdetails.service.PatientdetailsService</value>
                 <ref bean="patientdetails.PatientdetailsService" />
             </list>
         </property>
     </bean>
+    
+    
+    <bean parent="serviceContext">
+		<property name="moduleService">
+			<list>
+				<value>org.openmrs.module.patientdetails.service.PatientdetailsService</value> <!-- Your service's interface class -->
+				<ref bean="patientdetails.PatientdetailsService"/>
+				<bean
+				 id="PatientdetailsService" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+					<property name="transactionManager">
+						<ref bean="transactionManager" />
+					</property>
+					<property name="target">
+						<bean
+							class="org.openmrs.module.patientdetails.impl.PatientdetailsServiceImpl"> <!-- Your service's concrete class -->
+							<property name="PatientdetailsDao"> <!-- Name of the DAO property on your ServiceImpl -->
+								<bean
+									class="org.openmrs.module.patientdetails.dao.PatientdetailsDaoImpl"> <!-- Your DAO's concrete class -->
+									<property name="sessionFactory">
+										<ref bean="sessionFactory" />
+									</property>
+								</bean>
+							</property>
+						</bean>
+					</property>
+					<property name="preInterceptors">
+						<ref bean="serviceInterceptors" />
+					</property>
+					<property name="transactionAttributeSource">
+						<bean
+							class="org.springframework.transaction.annotation.AnnotationTransactionAttributeSource" />
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
 </beans>
